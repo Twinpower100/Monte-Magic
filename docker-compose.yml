@@ -17,7 +17,7 @@ services:
       # См. docker/postgres/init/README.md и scripts/dump-local-db.ps1
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U monte_magic_admin -d monte_magic"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-monte_magic_admin} -d $${POSTGRES_DB:-monte_magic}"]
       interval: 5s
       timeout: 5s
       retries: 40
