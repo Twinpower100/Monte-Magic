@@ -15,6 +15,7 @@ media/
 
 # Локальные секреты (не коммитить)
 credentials.md
+Prompt.md
 
 .codex-tmp/
 
