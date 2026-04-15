@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-monte_magic}
-      POSTGRES_USER: ${POSTGRES_USER:-monte_magic_admin}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monte_magic_password}
+      POSTGRES_USER: ${POSTGRES_USER:-your_db_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-your_db_password}
     ports:
       - "5434:5432"
     volumes:
@@ -17,7 +17,7 @@ services:
       # См. docker/postgres/init/README.md и scripts/dump-local-db.ps1
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-monte_magic_admin} -d $${POSTGRES_DB:-monte_magic}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-your_db_user} -d $${POSTGRES_DB:-monte_magic}"]
       interval: 5s
       timeout: 5s
       retries: 40
@@ -36,7 +36,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URI: postgresql://${POSTGRES_USER:-monte_magic_admin}:${POSTGRES_PASSWORD:-monte_magic_password}@postgres:5432/${POSTGRES_DB:-monte_magic}
+      DATABASE_URI: postgresql://${POSTGRES_USER:-your_db_user}:${POSTGRES_PASSWORD:-your_db_password}@postgres:5432/${POSTGRES_DB:-monte_magic}
       PAYLOAD_SECRET: ${PAYLOAD_SECRET:-replace_with_long_random_secret_at_least_32_chars}
       NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://localhost:3006}
     ports:
