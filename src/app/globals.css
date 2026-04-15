@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-white: #ffffff;
+    --color-light: #f7f3ec;
+    --color-soft: #efe4d8;
+    --color-dark: #212622;
+    --color-emerald: #2d5f4c;
+    --color-emerald-dark: #1f4435;
+    --color-terracotta: #c67b5c;
+    --color-terracotta-light: #d89a7f;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 0;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #171b18;
+  }
+
+  /* Повышаем контрастность текстов */
+  .text-black\/65 {
+    color: rgba(0, 0, 0, 0.82);
+  }
+  .text-black\/45 {
+    color: rgba(0, 0, 0, 0.72);
+  }
+  .text-white\/90 {
+    color: rgba(255, 255, 255, 0.95);
+  }
+  .text-white\/80 {
+    color: rgba(255, 255, 255, 0.90);
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+}
+
+@layer utilities {
+  .section-shell {
+    @apply px-4 py-14 md:px-8 md:py-20;
+  }
+
+  .container-shell {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .app-shell {
+    min-height: 100vh;
+    overflow-x: clip;
+    background: linear-gradient(180deg, #fbf8f2 0%, #f7f2ea 100%);
+    color: #1b211d;
+    font-family: var(--font-inter), sans-serif;
+    font-weight: 500;
+    line-height: 1.62;
+    letter-spacing: 0;
+    font-synthesis: none;
+  }
+
+  .app-shell h1,
+  .app-shell h2,
+  .app-shell h3,
+  .app-shell h4,
+  .app-shell h5,
+  .app-shell h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .app-shell img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .app-shell ::selection {
+    background: rgba(198, 123, 92, 0.24);
+    color: #1f4435;
+  }
+
+  .page-glow {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    background:
+      radial-gradient(circle at top left, rgba(198, 123, 92, 0.06), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+  }
+
+  .section-heading {
+    color: #234535;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+    line-height: 0.98;
+  }
+
+  .anchor-target {
+    scroll-margin-top: 8rem;
+  }
+
+  @media (min-width: 768px) {
+    .anchor-target {
+      scroll-margin-top: 10.25rem;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(45, 95, 76, 0.92);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 2.2rem;
+    background: rgba(45, 95, 76, 0.52);
+  }
+
+  .premium-panel {
+    border: 1px solid rgba(27, 33, 29, 0.09);
+    border-radius: 1.7rem;
+    background: #ffffff;
+    box-shadow:
+      0 10px 28px rgba(30, 32, 27, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* ============================================
+   Scroll Reveal Animation
+   ============================================ */
+.sr-reveal {
+  transition:
+    opacity var(--sr-duration, 700ms) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--sr-duration, 700ms) cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--sr-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.sr-hidden {
+  opacity: 0;
+  transform: var(--sr-transform, translateY(40px));
+}
+
+.sr-visible {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) !important;
+}
+
+.app-shell ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.app-shell ::-webkit-scrollbar-track {
+  background: rgba(245, 245, 245, 0.9);
+}
+
+.app-shell ::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(45, 95, 76, 0.45);
+}
+
+.app-shell ::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 68, 53, 0.72);
+}

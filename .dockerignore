@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.env
+.env.local
+.env.production
+npm-debug.log
+Dockerfile*
+docker-compose*.yml
+
+# Дамп БД только для тома postgres, в образ приложения не включать
+docker/postgres/init/*.sql
+docker/postgres/init/*.sql.gz

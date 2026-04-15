@@ -1,0 +1,48 @@
+# Образы через mirror.gcr.io — устойчиво при блокировке docker.io (РФ и др.)
+services:
+  postgres:
+    image: mirror.gcr.io/library/postgres:18
+    container_name: monte_magic_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-monte_magic}
+      POSTGRES_USER: ${POSTGRES_USER:-monte_magic_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monte_magic_password}
+    ports:
+      - "5434:5432"
+    volumes:
+      # PostgreSQL 18+ (официальный образ): том только на /var/lib/postgresql, не на .../data
+      - postgres_data:/var/lib/postgresql
+      # Скрипты .sql / .sh из этой папки выполняются ОДИН РАЗ при первом создании пустого тома.
+      # См. docker/postgres/init/README.md и scripts/dump-local-db.ps1
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U monte_magic_admin -d monte_magic"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      # Первый старт с большим .sql в initdb.d может идти минуты — без grace period healthcheck «убивает» цепочку app
+      start_period: 120s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://localhost:3006}
+    container_name: monte_magic_app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URI: postgresql://${POSTGRES_USER:-monte_magic_admin}:${POSTGRES_PASSWORD:-monte_magic_password}@postgres:5432/${POSTGRES_DB:-monte_magic}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:-replace_with_long_random_secret_at_least_32_chars}
+      NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://localhost:3006}
+    ports:
+      - "3006:3006"
+    volumes:
+      - ./media:/app/media
+
+volumes:
+  postgres_data:

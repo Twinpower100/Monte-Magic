@@ -1,0 +1,25 @@
+node_modules/
+.next/
+dist/
+build/
+.env*
+!.env.example
+.vercel/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.payload
+media/
+
+# Локальные секреты (не коммитить)
+credentials.md
+
+.codex-tmp/
+
+# Дампы БД для Docker (не коммитить)
+docker/postgres/init/*.sql
+docker/postgres/init/*.sql.gz
+artifacts/
+*.log
