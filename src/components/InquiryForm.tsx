@@ -10,7 +10,7 @@ type InquiryFormProps = {
 }
 
 const inputClass =
-  'w-full rounded-[1.35rem] border border-black/10 bg-[#fffdfa] px-4 py-3.5 text-[0.97rem] outline-none transition focus:border-emerald focus:bg-white'
+  'w-full rounded-[1.35rem] border border-black/10 bg-[#fffdfa] px-4 py-2.5 text-[0.97rem] outline-none transition focus:border-emerald focus:bg-white'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const phoneRegex = /^[+0-9\s()\-]{7,20}$/
@@ -133,21 +133,21 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="premium-panel space-y-5 p-6 md:p-8">
+    <form onSubmit={handleSubmit} noValidate className="premium-panel space-y-4 p-5 md:p-6">
       <div aria-hidden="true" className="hidden">
         <input type="text" name="website_url" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.name} *
           </label>
           <input required minLength={2} name="name" className={inputClass} aria-invalid={Boolean(fieldErrors.name)} />
           {fieldErrors.name && <p className="mt-1.5 text-xs font-medium text-red-600">{fieldErrors.name}</p>}
         </div>
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.email} *
           </label>
           <input required type="email" name="email" className={inputClass} aria-invalid={Boolean(fieldErrors.email)} />
@@ -155,9 +155,9 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.phone} *
           </label>
           <input
@@ -173,7 +173,7 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
           {fieldErrors.phone && <p className="mt-1.5 text-xs font-medium text-red-600">{fieldErrors.phone}</p>}
         </div>
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.preferred}
           </label>
           <select name="preferredContactMethod" className={inputClass} defaultValue="whatsapp">
@@ -186,9 +186,9 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.service}
           </label>
           <select name="serviceType" className={inputClass} defaultValue="tour">
@@ -199,7 +199,7 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
           </select>
         </div>
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.tour}
           </label>
           <select name="tourInterest" className={inputClass}>
@@ -213,15 +213,15 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.travelers}
           </label>
           <input name="travelersCount" type="number" min={1} className={inputClass} />
         </div>
         <div>
-          <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+          <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
             {copy.form.language}
           </label>
           <input readOnly value={localeMeta[locale].label} className={`${inputClass} bg-sand`} />
@@ -230,12 +230,12 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
       </div>
 
       <div>
-        <label className="mb-2 flex min-h-[2.5rem] items-end text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+        <label className="mb-1 flex min-h-[1.75rem] items-end text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45">
           {copy.form.description}
         </label>
           <textarea
             name="shortRequestDescription"
-            rows={4}
+            rows={2}
             className={`${inputClass} resize-none`}
             placeholder={copy.form.descriptionPlaceholder}
           />
@@ -265,7 +265,7 @@ export function InquiryForm({ locale, tours, privacyText }: InquiryFormProps) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full rounded-full bg-emerald px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-emerald-dark disabled:opacity-60"
+        className="w-full rounded-full bg-emerald px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-emerald-dark disabled:opacity-60"
       >
         {status === 'loading' ? copy.buttons.sending : copy.buttons.send}
       </button>
