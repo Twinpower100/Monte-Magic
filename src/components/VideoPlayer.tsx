@@ -77,7 +77,7 @@ export function VideoPlayer({
     return (
       <div
         className="flex aspect-video w-full items-center justify-center bg-premium-200 text-premium-500"
-        style={poster ? { backgroundImage: `url(${poster})`, backgroundSize: 'cover' } : {}}
+        style={poster ? { backgroundImage: `url('${poster}')`, backgroundSize: 'cover' } : {}}
       >
         <span className="text-sm tracking-wider uppercase">Video unavailable</span>
       </div>

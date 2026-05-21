@@ -15,6 +15,12 @@ export const HomePage: GlobalConfig = {
       required: true,
     },
     {
+      name: 'heroBadge',
+      label: 'Hero: бейдж (над заголовком)',
+      type: 'text',
+      localized: true,
+    },
+    {
       name: 'heroSubtitle',
       label: 'Hero: подзаголовок',
       type: 'textarea',

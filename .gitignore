@@ -24,3 +24,4 @@ docker/postgres/init/*.sql
 docker/postgres/init/*.sql.gz
 artifacts/
 *.log
+*.xlsx

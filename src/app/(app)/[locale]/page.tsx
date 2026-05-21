@@ -120,11 +120,12 @@ export default async function HomePage({
            Hero Section
            ============================================ */}
       <section className="relative min-h-[88vh] overflow-hidden">
-        {primaryHeroImageUrl ? (
+        {primaryHeroImageUrl || (heroDisplayMode === 'collage' && collage.length > 0) ? (
           <HeroBackground
             primaryImageUrl={primaryHeroImageUrl}
             accentImageUrl={accentHeroImageUrl}
             mode={heroDisplayMode === 'collage' ? 'collage' : 'single_photo'}
+            collageUrls={collage.map((c) => c.url)}
           />
         ) : heroDisplayMode === 'none' ? (
           <div className="absolute inset-0 bg-[linear-gradient(145deg,#112018_0%,#244638_42%,#8f654f_100%)]" />
@@ -138,7 +139,7 @@ export default async function HomePage({
           <div className="mx-auto flex w-full max-w-[58rem] flex-col items-center self-center text-center">
             <ScrollReveal duration={900}>
               <div className="inline-flex rounded-full border border-white/22 bg-black/12 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/90 backdrop-blur-sm">
-                Montenegro Private Travel
+                {home?.heroBadge || siteName}
               </div>
             </ScrollReveal>
             <ScrollReveal delay={120} duration={900}>
