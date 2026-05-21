@@ -25,3 +25,5 @@ docker/postgres/init/*.sql.gz
 artifacts/
 *.log
 *.xlsx
+*.docx
+Настройки доступов к серверам.docx
